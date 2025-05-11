@@ -1,0 +1,16 @@
+services:
+  api:
+    build: .
+    volumes:
+      - .:/app
+      - ./data:/app/data
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-insecure_dev_key_do_not_use_in_prod}
+      - DJANGO_ALLOWED_HOSTS=0.0.0.0,localhost,127.0.0.1
+      - DJANGO_DEBUG=${DJANGO_DEBUG:-True}
+
+volumes:
+  static_volume:
